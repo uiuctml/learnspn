@@ -27,8 +27,8 @@ public class Parameter {
 	public static boolean normImPatch = true;
 	public static int patchWidth = 4;
 	public static int patchStride = patchWidth;
-	public static String filename = "untitled";
-	public static String loadFilename = "load";
+	public static String filename = "d0.spn";
+	public static String loadFilename = "d0.spn";
 	public static int maxEpochs = 1000;
 	public static int dictionarySize = 1000;
 	public static double featThreshold = 0.0;
