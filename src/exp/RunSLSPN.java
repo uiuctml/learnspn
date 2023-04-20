@@ -107,6 +107,8 @@ public class RunSLSPN {
 		System.out.print("\tValid: "+vllh);
 		System.out.print("\tTest: "+tllh);
 		System.out.println("\tTime: "+1.0*(toc-tic)/1000);
+
+		spn.save();
 	}
 
 

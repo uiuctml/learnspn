@@ -7,7 +7,7 @@ public class SmoothedMultinomialNode extends Node implements DatasetDep {
 	private static final long serialVersionUID = 1L;
 	public static double smooth = 0.0000001;
 	private double logvals[];
-	private final int attr;
+	public final int attr;
 	private Dataset d;
 	private final int[] instances;
 	

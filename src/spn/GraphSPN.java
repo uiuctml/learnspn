@@ -5,11 +5,13 @@ import java.io.BufferedOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.ObjectInput;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.io.OutputStream;
+import java.io.PrintWriter;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -19,6 +21,7 @@ import java.util.Map;
 import java.util.Queue;
 import java.util.Random;
 
+import util.Parameter;
 import util.SPNUtil;
 import data.Dataset;
 import data.Partition;
@@ -279,5 +282,128 @@ public class GraphSPN implements Serializable {
 		}
 	}
 
+	public void
+	save()
+	{
+		FileWriter file_writer;
 
+		try
+		{
+			file_writer = new FileWriter(Parameter.filename + ".txt", false);
+		}
+		catch (IOException exception)
+		{
+			System.out.println("Failed to open " + Parameter.filename + ".txt.");
+			return;
+		}
+
+		PrintWriter print_writer = new PrintWriter(file_writer, false);
+
+		print_writer.println("##NODES##");
+		print_writer.flush();
+		traverseRecursiveNodes(getRoot(), print_writer);
+
+		print_writer.println("##EDGES##");
+		print_writer.flush();
+		traverseRecursiveEdges(getRoot(), print_writer);
+
+		print_writer.close();
+
+		try
+		{
+			file_writer.close();
+		}
+		catch (IOException exception)
+		{
+			System.out.println("Failed to close " + Parameter.filename + ".txt.");
+			return;
+		}
+	}
+
+	private void
+	traverseRecursiveNodes(Node node, PrintWriter print_writer)
+	{
+		int index_node = (int) order.index.get(node).pos;
+
+		if (node instanceof SumNode)
+		{
+			SumNode node_sum = (SumNode) node;
+
+			print_writer.println(index_node + ",SUM");
+			print_writer.flush();
+
+			for (int index_child = 0; index_child < node_sum.getChds().size(); index_child ++)
+			{
+				traverseRecursiveNodes(node_sum.getChds().get(index_child), print_writer);
+			}
+		}
+		else if (node instanceof ProdNode)
+		{
+			ProdNode node_product = (ProdNode) node;
+
+			print_writer.println(index_node + ",PRD");
+			print_writer.flush();
+
+			for (int index_child = 0; index_child < node_product.allChildren().size(); index_child ++)
+			{
+				traverseRecursiveNodes(node_product.allChildren().get(index_child), print_writer);
+			}
+		}
+		else if (node instanceof SmoothedMultinomialNode)
+		{
+			SmoothedMultinomialNode node_leaf = (SmoothedMultinomialNode) node;
+
+			double likelihood = Math.exp(node_leaf.getLogVal());
+			print_writer.println(index_node + ",BINNODE," + node_leaf.attr + "," + Double.toString(likelihood) + "," + Double.toString(1 - likelihood));
+			print_writer.flush();
+		}
+		else
+		{
+			System.out.println("Unknow node type.");
+		}
+	}
+
+	private void
+	traverseRecursiveEdges(Node node, PrintWriter print_writer)
+	{
+		int index_node = (int) order.index.get(node).pos;
+
+		if (node instanceof SumNode)
+		{
+			SumNode node_sum = (SumNode) node;
+
+			for (int index_child = 0; index_child < node_sum.getChds().size(); index_child ++)
+			{
+				Node node_child = node_sum.getChds().get(index_child);
+				Double weight = node_sum.getW().get(index_child);
+				int index_child_global = (int) order.index.get(node_child).pos;
+
+				print_writer.println(index_node + "," + index_child_global + "," + weight);
+				print_writer.flush();
+			}
+
+			for (int index_child = 0; index_child < node_sum.getChds().size(); index_child ++)
+			{
+				traverseRecursiveEdges(node_sum.getChds().get(index_child), print_writer);
+			}
+		}
+		else if (node instanceof ProdNode)
+		{
+			ProdNode node_product = (ProdNode) node;
+
+			for (int index_child = 0; index_child < node_product.allChildren().size(); index_child ++)
+			{
+				Node node_child = node_product.allChildren().get(index_child);
+				int index_child_global = (int) order.index.get(node_child).pos;
+
+				print_writer.println(index_node + "," + index_child_global);
+				print_writer.flush();
+			}
+
+			for (int index_child = 0; index_child < node_product.allChildren().size(); index_child ++)
+			{
+				traverseRecursiveEdges(node_product.allChildren().get(index_child), print_writer);
+			}
+		}
+	}
 }
