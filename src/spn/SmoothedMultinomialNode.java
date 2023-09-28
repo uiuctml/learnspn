@@ -11,6 +11,10 @@ public class SmoothedMultinomialNode extends Node implements DatasetDep {
 	private Dataset d;
 	private final int[] instances;
 	
+	public double[] getLogVals() {
+		return logvals;
+	}
+
 	public SmoothedMultinomialNode(Dataset d, int variable, int instances[]) {
 		this.d = d;
 		attr = variable;

@@ -96,6 +96,8 @@ public class RunSLSPN {
 
 
 		spn = GraphSPN.load(util.Parameter.filename, d);
+		spn.save();
+
 		double vllh = spn.llh(Partition.Validation);
 		double tllh = spn.llh(Partition.Testing);
 
@@ -107,8 +109,6 @@ public class RunSLSPN {
 		System.out.print("\tValid: "+vllh);
 		System.out.print("\tTest: "+tllh);
 		System.out.println("\tTime: "+1.0*(toc-tic)/1000);
-
-		spn.save();
 	}
 
 

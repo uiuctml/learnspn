@@ -33,6 +33,7 @@ public abstract class Node implements Serializable {
 	// val
 	public double logval_ = 0;
 	public double getLogVal() {return logval_;}
+	public double[] getLogVals() {return new double[] {logval_, 1-logval_};}
 //	public void setVal(double v) {if (v==0) logval_=ZERO_LOGVAL_; else logval_=Math.log(v);}
 	public void eval() {}
 	

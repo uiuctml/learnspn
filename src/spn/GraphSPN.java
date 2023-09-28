@@ -353,8 +353,14 @@ public class GraphSPN implements Serializable {
 		{
 			SmoothedMultinomialNode node_leaf = (SmoothedMultinomialNode) node;
 
-			double likelihood = Math.exp(node_leaf.getLogVal());
-			print_writer.println(index_node + ",BINNODE," + node_leaf.attr + "," + Double.toString(likelihood) + "," + Double.toString(1 - likelihood));
+			String content = index_node + ",CATNODE," + node_leaf.attr;
+			double[] logvals = node_leaf.getLogVals();
+			for (int i = 0; i < logvals.length; i++) {
+				double likelihood = Math.exp(logvals[i]);
+				content += "," +Double.toString(likelihood);
+			}
+
+			print_writer.println(content);
 			print_writer.flush();
 		}
 		else
