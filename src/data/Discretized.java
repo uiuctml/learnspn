@@ -113,7 +113,9 @@ public class Discretized extends SparseDataset{
 		attrSizes = new int[numVar];
 		data = new int[numTraining + numValidation + numTesting][numVar];
 
-		for(int i=0;i<numVar;i++){ attrSizes[i]=2; }
+		for(int i=0;i<numVar;i++){ 
+			attrSizes[i]=1; 
+		}
 
 		int c = 0;
 
@@ -132,6 +134,9 @@ public class Discretized extends SparseDataset{
 				for(int f=0; f<numVar; f++){
 					// Where the permutation is used
 					data[c][f] = Integer.parseInt(toks[f]);
+					if(data[c][f] >= attrSizes[f]) {
+						attrSizes[f] = data[c][f]+1;
+					}
 				}
 				c++;
 			}
@@ -144,6 +149,9 @@ public class Discretized extends SparseDataset{
 				String toks[] = line.split(delim);
 				for(int f=0; f<numVar; f++){
 					data[c][f] = Integer.parseInt(toks[f]);
+					if(data[c][f] >= attrSizes[f]) {
+						attrSizes[f] = data[c][f]+1;
+					}
 				}
 				c++;
 			}
@@ -157,6 +165,9 @@ public class Discretized extends SparseDataset{
 				String toks[] = line.split(delim);
 				for(int f=0; f<numVar; f++){
 					data[c][f] = Integer.parseInt(toks[f]);
+					if(data[c][f] >= attrSizes[f]) {
+						attrSizes[f] = data[c][f]+1;
+					}
 				}
 				c++;
 			}
