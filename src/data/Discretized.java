@@ -102,6 +102,9 @@ public class Discretized extends SparseDataset{
 	public static class CR52 extends Discretized{
 		public CR52() {super("cr52"	,	889	,	6532	,	1028	,	1540);}
 	}
+	public static class Custom extends Discretized{
+		public Custom() {super("custom"	,	5	,	31367	,	3921	,	3921);}
+	}
 
 
 	private Discretized(String name, int numVar, int numTrain, int numValid, int numTest) {
