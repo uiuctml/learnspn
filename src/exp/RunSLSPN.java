@@ -44,8 +44,8 @@ public class RunSLSPN {
 			Discretized.Kosarek.class,
 			Discretized.Retail.class,
 			Discretized.Pumsb_Star.class,
-			Discretized.CR52.class,
-			Discretized.Custom.class}; // 28
+			Discretized.CR52.class, // 28
+			Discretized.Custom.class};
 	
 	
 	/**
