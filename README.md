@@ -1,4 +1,25 @@
-LearnSPN Version 1.0 
+# LearnSPN
+
+## Overview
+
+This codebase implements the structure learning algorithm for the sum-product networks (SPNs).
+
+## Structure Learning
+
+Under the project directory, the codebase can be compiled and run as follows:
+
+```bash
+cd scripts/learnspn
+./setup.bash
+```
+
+Please refer to the content of `scripts/learnspn/setup.bash` and ensure that all relevant parameters are properly set. Additionally, the custom dataset symlinks under `data` should be updated to point to the correct location of the target datasets. The generated SPN are stored under `output/learnspn`.
+
+## Original README
+
+README from the original authors starts here:
+
+LearnSPN Version 1.0
 6/17/13 Robert Gens rcg@cs.washington.edu
 
 This is raw, unoptimized research code.  We provide the subroutines as described in the paper: pairwise independence (G-test) and online hard EM over a naive Bayes mixture model.  We will likely expand this code with other subroutines.
@@ -40,11 +61,11 @@ Parameters:
 
 Grid search in paper:
 Cluster penalty "CP": {0.2, 0.4, 0.6, 0.8}
-Significance threshold "GF": {10 , 15} (corresponding to p-values 0.0015 and 0.0001, respectively) 
+Significance threshold "GF": {10 , 15} (corresponding to p-values 0.0015 and 0.0001, respectively)
 
 Datasets "DATA"
 0  EachMovie
-1  MSWeb 
+1  MSWeb
 2  KDD
 6  Audio
 7  Book
