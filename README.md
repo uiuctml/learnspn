@@ -13,7 +13,7 @@ cd scripts/learnspn
 ./setup.bash
 ```
 
-Please refer to the content of `scripts/learnspn/setup.bash` and ensure that all relevant parameters are properly set. Additionally, the custom dataset symlinks under `data` should be updated to point to the correct location of the target datasets. The generated SPN are stored under `output/learnspn`.
+Please refer to the content of `scripts/learnspn/setup.bash` and ensure that all relevant parameters are properly set. Additionally, the custom dataset symlinks under `data` should be updated to point to the correct location of the target datasets. The generated SPN is stored under `output/learnspn`.
 
 ## Original README
 
