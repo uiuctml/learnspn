@@ -12,7 +12,7 @@ function main()
 	local dir_build="build/$project_name"
 	local dir_output="output/$project_name"
 	local dir_source="src"
-	local file_name_spn="gtsrb.spn"
+	local file_name_spn="cub.spn"
 	local file_path_class_main="$dir_source/exp/RunSLSPN.java"
 
 	# Build project

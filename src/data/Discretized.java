@@ -103,7 +103,7 @@ public class Discretized extends SparseDataset{
 		public CR52() {super("cr52"	,	889	,	6532	,	1028	,	1540);}
 	}
 	public static class Custom extends Discretized{
-		public Custom() {super("custom"	,	5	,	31367	,	3921	,	3921);}
+		public Custom() {super("custom"	,	6	,	988	,	124	,	124);}
 	}
 
 
@@ -116,8 +116,8 @@ public class Discretized extends SparseDataset{
 		attrSizes = new int[numVar];
 		data = new int[numTraining + numValidation + numTesting][numVar];
 
-		for(int i=0;i<numVar;i++){ 
-			attrSizes[i]=1; 
+		for(int i=0;i<numVar;i++){
+			attrSizes[i]=1;
 		}
 
 		int c = 0;
