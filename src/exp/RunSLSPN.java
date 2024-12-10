@@ -15,9 +15,9 @@ public class RunSLSPN {
 	public static int data_id;
 	public static String queryfile;
 	public static String evidencefile;
-	
+
 	public static Class ds[] = new Class[] {Discretized.EachMovie.class,
-			Discretized.MSWeb.class, 
+			Discretized.MSWeb.class,
 			Discretized.KDD.class,
 			Discretized.S20NG.class,
 			Discretized.Abalone.class,
@@ -45,9 +45,12 @@ public class RunSLSPN {
 			Discretized.Retail.class,
 			Discretized.Pumsb_Star.class,
 			Discretized.CR52.class, // 28
-			Discretized.Custom.class};
-	
-	
+			Discretized.AwA2.class, // 29
+			Discretized.CUB.class, // 30
+			Discretized.GTSRB.class, // 31
+			Discretized.MNIST.class}; // 32
+
+
 	/**
 	 * @param args
 	 */
@@ -68,7 +71,7 @@ public class RunSLSPN {
 		GraphSPN spn = slalg.learnStructure(d);
 
 		long toc = System.currentTimeMillis();
-		
+
 		double highestValidation = Double.NEGATIVE_INFINITY;
 
 		double smoo = 1.0;
@@ -123,7 +126,7 @@ public class RunSLSPN {
 				data_id = Integer.parseInt(args[++pos]);
 				System.out.println(args[pos-1]+"\t"+args[pos]);
 			}
-			
+
 			// Gfactor
 			if(args[pos].equals("GF")){
 				VarInstSplit.gfactor = Double.parseDouble(args[++pos]);
@@ -160,14 +163,14 @@ public class RunSLSPN {
 				queryfile = args[++pos];
 				System.out.println(args[pos-1]+"\t"+args[pos]);
 			}
-			
+
 			// Evidence file
 			if(args[pos].equals("EV")){
 				evidencefile = args[++pos];
 				System.out.println(args[pos-1]+"\t"+args[pos]);
 			}
-			
-			
+
+
 			pos++;
 		}
 
