@@ -102,8 +102,17 @@ public class Discretized extends SparseDataset{
 	public static class CR52 extends Discretized{
 		public CR52() {super("cr52"	,	889	,	6532	,	1028	,	1540);}
 	}
-	public static class Custom extends Discretized{
-		public Custom() {super("custom"	,	6	,	988	,	124	,	124);}
+	public static class AwA2 extends Discretized{
+		public AwA2() {super("awa2"	,	8	,	29857	,	3732	,	3733);}
+	}
+	public static class CUB extends Discretized{
+		public CUB() {super("cub"	,	6	,	988	,	124	,	124);}
+	}
+	public static class GTSRB extends Discretized{
+		public GTSRB() {super("gtsrb"	,	5	,	31367	,	3921	,	3921);}
+	}
+	public static class MNIST extends Discretized{
+		public MNIST() {super("mnist"	,	3	,	28000	,	3500	,	3500);}
 	}
 
 

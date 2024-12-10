@@ -8,11 +8,25 @@ cd "../.."
 
 function main()
 {
+	declare -A datasets=(["awa2"]="29" ["cub"]="30" ["gtsrb"]="31" ["mnist"]="32")
+
+	local dataset_prefix="$1"
+
+	if [ "$dataset_prefix" = "" ]
+	then
+		echo "[INFO]: Usage: ./$(basename $0) <dataset prefix>"
+		exit 1
+	elif [ "${datasets[$dataset_prefix]}" = "" ]
+	then
+		echo "[FATAL]: Unknown dataset prefix. Quit."
+		exit 1
+	fi
+
 	local project_name="learnspn"
 	local dir_build="build/$project_name"
 	local dir_output="output/$project_name"
 	local dir_source="src"
-	local file_name_spn="cub.spn"
+	local file_name_spn="$dataset_prefix.spn"
 	local file_path_class_main="$dir_source/exp/RunSLSPN.java"
 
 	# Build project
@@ -25,11 +39,11 @@ function main()
 
 	# Run project
 	echo "[INFO]: Running project..."
-	if [ ! -d "$dir_" ]
+	if [ ! -d "$dir_output" ]
 	then
 		mkdir -p "$dir_output"
 	fi
-	java -cp "$dir_build" "exp.RunSLSPN" "DATA" "29" "N" "$dir_output/$file_name_spn" "CP" "1.6" "GF" "10"
+	java -cp "$dir_build" "exp.RunSLSPN" "DATA" "${datasets[$dataset_prefix]}" "N" "$dir_output/$file_name_spn" "CP" "1.6" "GF" "10"
 }
 
 # Call main function
