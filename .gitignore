@@ -4,5 +4,4 @@ build/
 
 # Files
 *.spn
-*.spn.txt
 .DS_Store
