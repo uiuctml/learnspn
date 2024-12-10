@@ -4,7 +4,7 @@ import json
 import natsort
 import os
 
-dataset_prefix = "gtsrb"
+dataset_prefix = "awa2"
 dir_output = "../../output/learnspn"
 file_name_spn_manual = dataset_prefix + "_manual.spn.txt"
 file_path_dataset = "../../data/" + dataset_prefix + ".ts.data"
