@@ -105,6 +105,9 @@ public class Discretized extends SparseDataset{
 	public static class AwA2 extends Discretized{
 		public AwA2() {super("awa2"	,	5	,	29857	,	3732	,	3733);}
 	}
+	public static class CelebA extends Discretized{
+		public CelebA() {super("celeba"	,	6	,	162079	,	20260	,	20260);}
+	}
 	public static class CUB extends Discretized{
 		public CUB() {super("cub"	,	6	,	988	,	124	,	124);}
 	}

@@ -46,9 +46,10 @@ public class RunSLSPN {
 			Discretized.Pumsb_Star.class,
 			Discretized.CR52.class, // 28
 			Discretized.AwA2.class, // 29
-			Discretized.CUB.class, // 30
-			Discretized.GTSRB.class, // 31
-			Discretized.MNIST.class}; // 32
+			Discretized.CelebA.class, // 30
+			Discretized.CUB.class, // 31
+			Discretized.GTSRB.class, // 32
+			Discretized.MNIST.class}; // 33
 
 
 	/**
