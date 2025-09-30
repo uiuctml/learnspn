@@ -15,7 +15,7 @@ cd "../.."
 
 function main()
 {
-	declare -A datasets=(["awa2"]="29" ["celeba"]="30" ["cub"]="31" ["gtsrb"]="32" ["mnist"]="33")
+	declare -A datasets=(["awa2"]="29" ["celeba"]="30" ["gtsrb"]="31" ["mnist"]="32")
 
 	local dataset_prefix="$1"
 
