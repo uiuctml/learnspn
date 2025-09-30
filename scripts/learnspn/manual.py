@@ -1,5 +1,12 @@
 #!/usr/bin/env python3
 
+"""
+@file   manual.py
+@author Simon Yu
+@date   12/10/2024
+@brief  Script for manual PCs.
+"""
+
 import json
 import natsort
 import os
@@ -8,7 +15,7 @@ dataset_prefix = "awa2"
 dir_output = "../../output/learnspn"
 file_name_spn_manual = dataset_prefix + "_manual.spn.txt"
 file_path_dataset = "../../data/" + dataset_prefix + ".ts.data"
-file_path_dataset_config = "../../../visat-dataset-tools/configs/" + dataset_prefix + ".json"
+file_path_dataset_config = "../../../npc-dataset-utils/configs/" + dataset_prefix + ".json"
 
 def getLabelsAttribute(dataset_config):
     labels_attribute = {}

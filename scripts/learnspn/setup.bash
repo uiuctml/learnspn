@@ -1,5 +1,12 @@
 #!/usr/bin/env bash
 
+##
+# @file   setup.bash
+# @author Simon Yu
+# @date   02/13/2024
+# @brief  Script for LearnSPN PCs.
+##
+
 # Go to script directory
 cd "$(dirname $0)"
 
