@@ -8,6 +8,7 @@
 1. [Data-Driven Approach](#data-driven-approach)
 1. [Knowledge-Injected Approach](#knowledge-injected-approach)
 1. [Original Project](#original-project)
+1. [Acknowledgements](#acknowledgements)
 1. [License](#license)
 
 ## Project Overview
@@ -15,8 +16,8 @@
 This codebase implements LearnSPN, a structure learning algorithm for Sum-Product Networks (SPNs), better known as Probabilistic Circuits (PCs). The project was initially created and licensed by Robert Gens and Pedro Domingos, with details provided in their [paper](https://proceedings.mlr.press/v28/gens13.pdf).
 
 The codebase has been extended and adapted for the Neural Probabilistic Circuit (NPC) project to construct and generate PCs in two ways:
- - **Data-Driven Approach:** Uses the LearnSPN algorithm to automatically learn circuit structures from data. The project has been modified to output structures in a standardized format compatible with downstream NPC pipelines.
- - **Knowledge-Injected Approach:** Supports manually defined circuit structures that encode human domain knowledge directly, enabling explicit logical reasoning within the NPC framework.
+- **Data-Driven Approach:** Uses the LearnSPN algorithm to automatically learn circuit structures from data. The project has been modified to output structures in a standardized format compatible with downstream NPC pipelines.
+- **Knowledge-Injected Approach:** Supports manually defined circuit structures that encode human domain knowledge directly, enabling explicit logical reasoning within the NPC framework.
 
 Together, these capabilities make this codebase the foundation for generating the PCs used throughout the NPC project.
 
@@ -53,7 +54,7 @@ cd npc/learnspn/scripts/learnspn
 ./setup.bash <dataset prefix>
 ```
 
-Example PCs constructed by the data-driven approach are stored under `npc/learnspn/output/learnspn`.
+The constructed PC is stored as `npc/learnspn/output/learnspn/<dataset prefix>.spn.txt`.
 
 ## Knowledge-Injected Approach
 
@@ -66,7 +67,7 @@ cd npc/learnspn/scripts/learnspn
 ./manual.py
 ```
 
-Example PCs constructed by the knowledge-injected approach are stored under `npc/learnspn/output/learnspn`.
+The constructed PC is stored as `npc/learnspn/output/learnspn/<dataset prefix>_manual.spn.txt`.
 
 ## Original Project
 
@@ -139,6 +140,11 @@ Datasets "DATA"
 27 Pumsb_Star
 28 CR52
 ```
+
+## Acknowledgements
+
+I would like to express my gratitude to Rahim Khan, Tommy Tang,
+Alex Tanthiptham, and Trusha Vernekar for their contributions to the implementations, testing, and experiments for the NPC projects.
 
 ## License
 
