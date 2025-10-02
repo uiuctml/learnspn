@@ -65,9 +65,9 @@ public static class AwA2 extends Discretized
 
 Based on the above declaration for the AwA2 dataset, there must be:
 
-- 5 values per line and 3733 lines in `npc/learnspn/data/awa2.test.data`
-- 5 values per line and 29857 lines in `npc/learnspn/data/awa2.ts.data`
-- 5 values per line and 3732 lines in `npc/learnspn/data/awa2.valid.data`
+- 5 values per line and 3,733 lines in `npc/learnspn/data/awa2.test.data`
+- 5 values per line and 29,857 lines in `npc/learnspn/data/awa2.ts.data`
+- 5 values per line and 3,732 lines in `npc/learnspn/data/awa2.valid.data`
 
 It is critical to configure these dimensions correctly in `npc/learnspn/src/data/Discretized.java`. The original implementation does not validate the number of variables and instances and may continue to run and produce incorrect results even if the dimensions are not properly configured.
 
