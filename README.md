@@ -47,13 +47,13 @@ The PC datasets are stored under `npc/learnspn/data`. PC datasets used for the N
 
 ## Data-Driven Approach
 
-Start by reviewing `npc/learnspn/scripts/learnspn/setup.bash` for all permissible dataset prefixes and ensure all relevant parameters within the script are set to the desired values.
+Start by reviewing `npc/learnspn/scripts/learnspn/learnspn.bash` for all permissible dataset prefixes and ensure all relevant parameters within the script are set to the desired values.
 
 Then, the LearnSPN algorithm can be compiled and executed as follows:
 
 ```bash
 cd npc/learnspn/scripts/learnspn
-./setup.bash <dataset prefix>
+./learnspn.bash <dataset prefix>
 ```
 
 The constructed PC is stored as `npc/learnspn/output/learnspn/<dataset prefix>.spn.txt`.

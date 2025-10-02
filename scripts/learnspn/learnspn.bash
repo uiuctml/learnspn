@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 ##
-# @file   setup.bash
+# @file   learnspn.bash
 # @author Simon Yu
 # @date   02/13/2024
 # @brief  Script for LearnSPN PCs.
