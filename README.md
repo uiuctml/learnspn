@@ -49,7 +49,29 @@ The PC datasets are stored under `npc/learnspn/data`. PC datasets used for the N
 
 Start by reviewing `npc/learnspn/scripts/learnspn/learnspn.bash` for all permissible dataset prefixes and ensure all relevant parameters within the script are set to the desired values.
 
-Then, the LearnSPN algorithm can be compiled and executed as follows:
+Next, confirm that the number of variables and instances defined in `npc/learnspn/src/data/Discretized.java` for each dataset split matches the dimensions of the corresponding PC dataset splits under `npc/learnspn/data`.
+
+For example:
+
+```java
+public static class AwA2 extends Discretized
+{
+    public AwA2()
+    {
+        super("awa2", 5, 29857, 3732, 3733);
+    }
+}
+```
+
+Based on the above declaration for the AwA2 dataset, there must be:
+
+- 5 values per line and 3733 lines in `npc/learnspn/data/awa2.test.data`
+- 5 values per line and 29857 lines in `npc/learnspn/data/awa2.ts.data`
+- 5 values per line and 3732 lines in `npc/learnspn/data/awa2.valid.data`
+
+It is critical to configure these dimensions correctly in `npc/learnspn/src/data/Discretized.java`. The original implementation does not validate the number of variables and instances and may continue to run and produce incorrect results even if the dimensions are not properly configured.
+
+Once the above configurations are verified, compile and run the LearnSPN algorithm as follows:
 
 ```bash
 cd npc/learnspn/scripts/learnspn
@@ -62,7 +84,7 @@ The constructed PC is stored as `npc/learnspn/output/learnspn/<dataset prefix>.s
 
 Start by reviewing `npc/learnspn/scripts/learnspn/manual.py` and ensure all relevant parameters within the script are set to the desired values.
 
-Then, the manual PCs can be constructed as follows:
+Then, the manual PCs is constructed as follows:
 
 ```bash
 cd npc/learnspn/scripts/learnspn
