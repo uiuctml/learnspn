@@ -84,7 +84,7 @@ The constructed PC is stored as `npc/learnspn/output/learnspn/<dataset prefix>.s
 
 Start by reviewing `npc/learnspn/scripts/learnspn/manual.py` and ensure all relevant parameters within the script are set to the desired values.
 
-Then, the manual PCs is constructed as follows:
+Then, the manual PC is constructed as follows:
 
 ```bash
 cd npc/learnspn/scripts/learnspn
@@ -95,7 +95,7 @@ The constructed PC is stored as `npc/learnspn/output/learnspn/<dataset prefix>_m
 
 ## Original Project
 
-The following README was authored by the creators of the original project, Robert Gens and Pedro Domingos. The original instructions is included for reference only and may no longer apply to the latest version of the project.
+The following README was authored by the creators of the original project, Robert Gens and Pedro Domingos. The original instructions are included for reference only and may no longer apply to the latest version of the project.
 
 ```
 LearnSPN Version 1.0
