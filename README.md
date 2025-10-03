@@ -71,7 +71,7 @@ Based on the above declaration for the AwA2 dataset, there must be:
 
 It is critical to configure these dimensions correctly in `npc/learnspn/src/data/Discretized.java`. The original implementation does not validate the number of variables and instances and may continue to run and produce incorrect results even if the dimensions are not properly configured.
 
-Once the above configurations are verified, compile and run the LearnSPN algorithm:
+Once the above parameters are verified, compile and run the LearnSPN algorithm:
 
 ```bash
 cd npc/learnspn/scripts/learnspn
