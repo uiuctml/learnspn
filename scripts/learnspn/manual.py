@@ -12,10 +12,10 @@ import natsort
 import os
 
 dataset_prefix = "awa2"
-dir_output = "../../output/learnspn"
-file_name_spn_manual = dataset_prefix + "_manual.spn.txt"
-file_path_dataset = "../../data/" + dataset_prefix + ".ts.data"
-file_path_dataset_config = "../../../npc-dataset-utils/configs/" + dataset_prefix + ".json"
+dir_outputs = "../../outputs/manual"
+file_name_spn_manual = dataset_prefix + ".spn.txt"
+file_path_dataset = os.path.join("../../data", dataset_prefix + ".ts.data")
+file_path_dataset_config = os.path.join("../../../npc-dataset-utils/configs/npc-dataset-utils", dataset_prefix + ".json")
 
 def getLabelsAttribute(dataset_config):
     labels_attribute = {}
@@ -155,10 +155,10 @@ def main():
 
     lines = lines_nodes + lines_edges
 
-    if not os.path.isdir(dir_output):
-        os.makedirs(dir_output, exist_ok = True)
+    if not os.path.isdir(dir_outputs):
+        os.makedirs(dir_outputs, exist_ok = True)
 
-    file_path_spn_manual = os.path.join(dir_output, file_name_spn_manual)
+    file_path_spn_manual = os.path.join(dir_outputs, file_name_spn_manual)
 
     with open(file_path_spn_manual, "w") as file_spn_manual:
         file_spn_manual.writelines(lines)

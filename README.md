@@ -78,7 +78,7 @@ cd npc/learnspn/scripts/learnspn
 ./learnspn.bash <dataset prefix>
 ```
 
-The constructed PC is stored as `npc/learnspn/output/learnspn/<dataset prefix>.spn.txt`.
+The constructed PC is stored as `npc/learnspn/outputs/learnspn/<dataset prefix>.spn.txt`.
 
 ## Knowledge-Injected Approach
 
@@ -91,7 +91,7 @@ cd npc/learnspn/scripts/learnspn
 ./manual.py
 ```
 
-The constructed PC is stored as `npc/learnspn/output/learnspn/<dataset prefix>_manual.spn.txt`.
+The constructed PC is stored as `npc/learnspn/outputs/manual/<dataset prefix>.spn.txt`.
 
 ## Original Project
 

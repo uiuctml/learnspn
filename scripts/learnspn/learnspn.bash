@@ -31,7 +31,7 @@ function main()
 
 	local project_name="learnspn"
 	local dir_build="build/$project_name"
-	local dir_output="output/$project_name"
+	local dir_outputs="outputs/$project_name"
 	local dir_source="src"
 	local file_name_spn="$dataset_prefix.spn"
 	local file_path_class_main="$dir_source/exp/RunSLSPN.java"
@@ -46,11 +46,11 @@ function main()
 
 	# Run project
 	echo "[INFO]: Running project..."
-	if [ ! -d "$dir_output" ]
+	if [ ! -d "$dir_outputs" ]
 	then
-		mkdir -p "$dir_output"
+		mkdir -p "$dir_outputs"
 	fi
-	java -cp "$dir_build" "exp.RunSLSPN" "DATA" "${datasets[$dataset_prefix]}" "N" "$dir_output/$file_name_spn" "CP" "1.6" "GF" "10"
+	java -cp "$dir_build" "exp.RunSLSPN" "DATA" "${datasets[$dataset_prefix]}" "N" "$dir_outputs/$file_name_spn" "CP" "1.6" "GF" "10"
 }
 
 # Call main function
