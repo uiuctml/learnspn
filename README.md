@@ -31,6 +31,8 @@ apt install openjdk-17-jdk python3-natsort
 
 Other Linux distributions, macOS, or Windows Subsystem for Linux (WSL) may also work with additional efforts. However, these platforms are not officially supported.
 
+This project is designed to run directly without any Python virtual environments, e.g., Conda. Using such environments is unnecessary and not recommended. The project is best run natively on Ubuntu 22.04 LTS. Additionally, do not install Python packages via `pip` unless explicitly instructed.
+
 ## Project Hierarchy
 
 This project is part of the NPC pipeline. To ensure compatibility and maintain consistent references across the pipeline, organize the project directories as follows:
