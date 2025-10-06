@@ -28,19 +28,19 @@ def getLabelsAttribute(dataset_config):
 
     return labels_attribute
 
-def getLabelsOriginal(dataset_config):
+def getLabelsClass(dataset_config):
     if "instance_wise" in dataset_config and dataset_config["instance_wise"]:
-        labels_original = []
-        labels_original_set = set()
+        labels_class = []
+        labels_class_set = set()
 
         for image_name in dataset_config["mappings"].keys():
             class_name = image_name.split('/')[0]
 
-            if class_name not in labels_original_set:
-                labels_original.append(class_name)
-                labels_original_set.add(class_name)
+            if class_name not in labels_class_set:
+                labels_class.append(class_name)
+                labels_class_set.add(class_name)
 
-        return natsort.natsorted(labels_original)
+        return natsort.natsorted(labels_class)
     else:
         return list(dataset_config["mappings"].keys())
 
@@ -90,7 +90,7 @@ def main():
     edge_count_prd_leaf = 0
     labels_attribute = getLabelsAttribute(config_dataset)
     labels_attribute_indices = getIndicesFromLabelsAttribute(labels_attribute)
-    labels_original = getLabelsOriginal(config_dataset)
+    labels_class = getLabelsClass(config_dataset)
     lines_edges = "##EDGES##\n"
     lines_nodes = "##NODES##\n"
     node_count_leaf = 0
@@ -119,7 +119,7 @@ def main():
             node_count_leaf += 1
 
     # Add task leaf nodes
-    for category_index in range(0, len(labels_original)):
+    for category_index in range(0, len(labels_class)):
         line_cat_node = "CATNODEPRD," + str(attribute_index_task) + "," + str(category_index)
         cat_node_dict[line_cat_node] = node_sequence
         lines_nodes += str(node_sequence) + "," + line_cat_node + "\n"
