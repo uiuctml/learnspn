@@ -107,7 +107,7 @@ def main():
 
     # Log attribute statistics
     for attribute_name in labels_attribute.keys():
-        print("[INFO]: Number of categories for attribute \"" + attribute_name + "\": " + str(len(labels_attribute[attribute_name])) + ".")
+        print("[INFO]: Total categories for attribute \"" + attribute_name + "\": " + str(len(labels_attribute[attribute_name])) + ".")
 
     # Add attribute leaf nodes
     for (attribute_index, attribute) in enumerate(config_dataset["attributes"]):
@@ -147,11 +147,11 @@ def main():
             lines_edges += str(node_sequence_prd) + "," + str(node_sequence_cat) + "\n"
             edge_count_prd_leaf += 1
 
-    print("[INFO]: Number of sum nodes: " + str(node_count_sum) + ".")
-    print("[INFO]: Number of product nodes: " + str(node_count_prd) + ".")
-    print("[INFO]: Number of leaf nodes: " + str(node_count_leaf) + ".")
-    print("[INFO]: Number of sum-to-product edges: " + str(edge_count_sum_prd) + ".")
-    print("[INFO]: Number of product-to-leaf edges: " + str(edge_count_prd_leaf) + ".")
+    print("[INFO]: Total PC sum nodes: " + str(node_count_sum) + ".")
+    print("[INFO]: Total PC product nodes: " + str(node_count_prd) + ".")
+    print("[INFO]: Total PC leaf nodes: " + str(node_count_leaf) + ".")
+    print("[INFO]: Total PC sum-to-product edges: " + str(edge_count_sum_prd) + ".")
+    print("[INFO]: Total PC product-to-leaf edges: " + str(edge_count_prd_leaf) + ".")
 
     lines = lines_nodes + lines_edges
 
