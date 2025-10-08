@@ -33,7 +33,7 @@ Ubuntu:
 apt install openjdk-17-jdk python3-natsort
 ```
 
-Arch Linux
+Arch Linux:
 
 ```bash
 pacman -S jdk17-openjdk python-natsort
