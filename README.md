@@ -1,4 +1,4 @@
-# LearnSPN
+# LearnSPN for Neural Probabilistic Circuit
 
 ## Table of Contents
 
