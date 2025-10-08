@@ -21,7 +21,7 @@ The codebase has been extended and adapted for the Neural Probabilistic Circuit 
 - **Data-Driven Approach:** Uses the LearnSPN algorithm to automatically learn circuit structures from data. The project has been modified to output structures in a standardized format compatible with the NPC pipeline.
 - **Knowledge-Injected Approach:** Supports manually defined circuit structures that encode human domain knowledge directly, enabling explicit logical reasoning within the NPC framework.
 
-Together, these capabilities make this codebase the foundation for generating the PCs used throughout the NPC project.
+Originally designed to handle only binary distributions, the implementation has been modified to support one-hot categorical distributions. Together, these capabilities make this codebase the foundation for generating the PCs used throughout the NPC project.
 
 ## Project Prerequisites
 
