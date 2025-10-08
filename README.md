@@ -184,7 +184,10 @@ Datasets "DATA"
 ```
 
 ## Publications
-Upon using this project, cite the following publications:
+
+Upon using this project, cite any relevant publications listed below:
+
+### Neural Probabilistic Circuit (NPC)
 
 ```
 @article{chen2025neural,
@@ -202,6 +205,8 @@ Upon using this project, cite the following publications:
   booktitle={Eighth Workshop on Tractable Probabilistic Modeling}
 }
 ```
+
+### LearnSPN
 
 ```
 @inproceedings{gens2013learning,
