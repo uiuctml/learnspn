@@ -30,13 +30,13 @@ This project requires the following system packages:
 Ubuntu:
 
 ```bash
-apt install openjdk-17-jdk python3-venv
+apt install openjdk-17-jdk python3.10 python3-venv
 ```
 
 Arch Linux:
 
 ```bash
-pacman -S jdk17-openjdk
+yay -S jdk17-openjdk python310
 ```
 
 Java 21 has also been verified to work with this project, though Java 17 is recommended for maximum compatibility.
@@ -61,9 +61,9 @@ This project is designed to run within a simple Python virtual environment. Crea
 ```bash
 cd npc
 deactivate
-python3 -m venv npc-venv
+python3.10 -m venv npc-venv
 source npc-venv/bin/activate
-python3 -m pip install -r learnspn/requirements.txt
+python3.10 -m pip install -r learnspn/requirements.txt
 ```
 
 Always ensure the virtual environment is activated before running the project.
