@@ -56,7 +56,7 @@ This project is part of the NPC pipeline. To ensure compatibility and maintain c
 
 All subsequent instructions assume the above project hierarchy.
 
-This project is designed to run within a dedicated Python virtual environment. Create and activate the environment as follows:
+This project is designed to run within a simple Python virtual environment. Create and activate the environment as follows:
 
 ```bash
 cd npc
