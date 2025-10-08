@@ -84,12 +84,12 @@ The constructed PC is stored as `npc/learnspn/outputs/learnspn/<dataset prefix>.
 
 ## Knowledge-Injected Approach
 
-Start by reviewing `npc/learnspn/scripts/learnspn/manual.py` and ensure all relevant parameters within the script are set to the desired values.
+Start by reviewing `npc/learnspn/scripts/manual/manual.py` and ensure all relevant parameters within the script are set to the desired values.
 
 Then, the manual PC is constructed as follows:
 
 ```bash
-cd npc/learnspn/scripts/learnspn
+cd npc/learnspn/scripts/manual
 ./manual.py
 ```
 
