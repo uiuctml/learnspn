@@ -15,7 +15,7 @@
 
 ## Project Overview
 
-This codebase implements LearnSPN, a structure learning algorithm for Sum-Product Networks (SPNs), better known as Probabilistic Circuits (PCs). The project was initially created and licensed by Robert Gens and Pedro Domingos, with further details provided in their [paper](https://proceedings.mlr.press/v28/gens13.pdf).
+This codebase implements LearnSPN, a structure learning algorithm for Sum-Product Networks (SPNs), better known as Probabilistic Circuits (PCs). The project was initially created and licensed by Robert Gens and Pedro Domingos, with further details provided in their [paper](https://proceedings.mlr.press/v28/gens13.html).
 
 The codebase has been extended and adapted for the Neural Probabilistic Circuit (NPC) project to construct and generate PCs in two ways:
 - **Data-Driven Approach:** Uses the LearnSPN algorithm to automatically learn circuit structures from data. The project has been modified to output structures in a standardized format compatible with the NPC pipeline.
