@@ -52,7 +52,7 @@ This project is part of the NPC pipeline. To ensure compatibility and maintain c
     ├── learnspn
     ├── npc-dataset-utils
     ├── npc-models
-    └── npc-venv
+    └── venv
 
 All subsequent instructions assume the above project hierarchy.
 
@@ -61,8 +61,8 @@ This project is designed to run within a simple Python virtual environment. Crea
 ```bash
 cd npc
 deactivate
-python3.10 -m venv npc-venv
-source npc-venv/bin/activate
+python3.10 -m venv venv
+source venv/bin/activate
 python3.10 -m pip install -r learnspn/requirements.txt
 ```
 
