@@ -1,2 +1,4 @@
 pip==24.0
 natsort==8.0.2
+numpy==1.21.5
+torch==2.1.2
