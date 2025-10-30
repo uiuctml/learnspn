@@ -17,7 +17,7 @@ import region_graph
 
 dataset_prefix = "awa2"
 file_path_dataset_config = os.path.join("../../../npc-dataset-utils/configs/npc-dataset-utils", dataset_prefix + ".json")
-pc_count_leaf_nodes_per_region = 1
+pc_count_leaf_nodes_per_region = 100
 pc_count_root_nodes = 1
 pc_count_sum_nodes_per_region = 2
 plot = False
