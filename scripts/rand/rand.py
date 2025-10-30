@@ -55,8 +55,10 @@ def assignRegionDepths(pc):
 def assignRegionIDs(pc):
     id = 0
     regions = queue.Queue()
+    regions_visited = set()
 
     regions.put(pc.output_vector)
+    regions_visited.add(pc.output_vector)
 
     while not regions.empty():
         region_parent = regions.get()
@@ -76,7 +78,9 @@ def assignRegionIDs(pc):
 
         if not isinstance(region_parent, rat_torch.GaussVector):
             for region_child in region_parent.inputs:
-                regions.put(region_child)
+                if region_child not in regions_visited:
+                    regions.put(region_child)
+                    regions_visited.add(region_child)
 
     return
 
@@ -295,13 +299,14 @@ def validateRegionGraph(pc):
                 print("[FATAL]: Invalid region graph: product regions have other than 2 children. Quit.")
                 exit(-1)
 
-            if region_parent.size != region_parent.inputs[0].size * region_parent.inputs[1].size:
+            region_child_1 = region_parent.inputs[0]
+            region_child_2 = region_parent.inputs[1]
+
+            if region_parent.size != region_child_1.size * region_child_2.size:
                 print("[FATAL]: Invalid region graph: incorrectly sized product regions. Quit.")
                 exit(-1)
 
-            region_child_1 = region_parent.inputs[0]
-            region_child_2 = region_parent.inputs[1]
-            id_node_child_pairs = itertools.product(region_child_1.nodes, region_child_2.nodes)
+            id_node_child_pairs = itertools.product(range(region_child_1.size), range(region_child_2.size))
 
             if region_parent.size != len(id_node_child_pairs):
                 print("[FATAL]: Invalid region graph: incorrectly sized product regions. Quit.")
@@ -318,7 +323,6 @@ def validateRegionGraph(pc):
                     exit(-1)
 
                 regions.put(region_child)
-
         elif isinstance(region_parent, rat_torch.GaussVector):
             continue
         else:
