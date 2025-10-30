@@ -25,29 +25,29 @@ region_graph_split_parts = 2
 region_graph_split_depth = 2
 region_graph_split_repetitions = 8
 
-def createPC(count_variables):
-    graph = region_graph.RegionGraph(range(count_variables))
+def assignRegionDepths(pc):
+    def recurseDepths(depth, regions_recurse, regions_leaf):
+        for region in regions_recurse:
+            region.depth = depth
 
-    for _ in range(region_graph_split_repetitions):
-        graph.random_split(region_graph_split_parts, region_graph_split_depth)
+            if not isinstance(region, rat_torch.GaussVector):
+                recurseDepths(depth + 1, region.inputs, regions_leaf)
+            else:
+                regions_leaf.add(region)
 
-    arguments = rat_torch.SpnArgs()
+    depth_leaf = -1
+    regions_leaf = set()
 
-    arguments.num_gauss = pc_count_leaf_nodes_per_region
-    arguments.num_sums = pc_count_sum_nodes_per_region
+    recurseDepths(0, [pc.output_vector], regions_leaf)
 
-    return rat_torch.RatSpn(pc_count_root_nodes, region_graph = graph, args = arguments)
+    for region_leaf in regions_leaf:
+        if region_leaf.depth > depth_leaf:
+            depth_leaf = region_leaf.depth
 
-def getLabelsAttribute(dataset_config):
-    labels_attribute = {}
+    for region_leaf in regions_leaf:
+        region_leaf.depth = depth_leaf
 
-    for attribute in dataset_config["attributes"]:
-        if "" in attribute["labels"]:
-            attribute["labels"].remove("")
-
-        labels_attribute[attribute["name"]] = attribute["labels"]
-
-    return labels_attribute
+    return
 
 def assignRegionIDs(pc):
     id = 0
@@ -76,29 +76,29 @@ def assignRegionIDs(pc):
 
     return
 
-def assignRegionDepths(pc):
-    def recurseDepths(depth, regions_recurse, regions_leaf):
-        for region in regions_recurse:
-            region.depth = depth
+def createPC(count_variables):
+    graph = region_graph.RegionGraph(range(count_variables))
 
-            if not isinstance(region, rat_torch.GaussVector):
-                recurseDepths(depth + 1, region.inputs, regions_leaf)
-            else:
-                regions_leaf.add(region)
+    for _ in range(region_graph_split_repetitions):
+        graph.random_split(region_graph_split_parts, region_graph_split_depth)
 
-    depth_leaf = -1
-    regions_leaf = set()
+    arguments = rat_torch.SpnArgs()
 
-    recurseDepths(0, [pc.output_vector], regions_leaf)
+    arguments.num_gauss = pc_count_leaf_nodes_per_region
+    arguments.num_sums = pc_count_sum_nodes_per_region
 
-    for region_leaf in regions_leaf:
-        if region_leaf.depth > depth_leaf:
-            depth_leaf = region_leaf.depth
+    return rat_torch.RatSpn(pc_count_root_nodes, region_graph = graph, args = arguments)
 
-    for region_leaf in regions_leaf:
-        region_leaf.depth = depth_leaf
+def getLabelsAttribute(dataset_config):
+    labels_attribute = {}
 
-    return
+    for attribute in dataset_config["attributes"]:
+        if "" in attribute["labels"]:
+            attribute["labels"].remove("")
+
+        labels_attribute[attribute["name"]] = attribute["labels"]
+
+    return labels_attribute
 
 def plotRegionGraph(pc):
     graph = networkx.DiGraph()
