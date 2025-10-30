@@ -22,7 +22,8 @@ file_path_dataset_config = os.path.join("../../../npc-dataset-utils/configs/npc-
 pc_count_leaf_nodes_per_region = 100
 pc_count_root_nodes = 1
 pc_count_sum_nodes_per_region = 2
-plot = False
+pc_plot = False
+region_graph_plot = False
 region_graph_split_parts = 2
 region_graph_split_depth = 2
 region_graph_split_repetitions = 8
@@ -121,31 +122,35 @@ def createPCEdges(pc):
                 edges.add((id_node_product, id_node_child_pair[0]))
                 edges.add((id_node_product, id_node_child_pair[1]))
 
-    return
+    return edges
 
 def createPCNodes(pc):
-    id = 0
+    id_node = 0
+    ids_region_visited = set()
     nodes = {}
     regions = queue.Queue()
 
     regions.put(pc.output_vector)
+    ids_region_visited.add(pc.output_vector.id)
 
     while not regions.empty():
         region_parent = regions.get()
         region_parent.nodes = set()
 
         for _ in range(region_parent.size):
-            if id in nodes:
+            if id_node in nodes:
                 print("[FATAL]: Duplicated PC node. Quit.")
                 exit(-1)
 
-            nodes[id] = (region_parent.type, region_parent.depth, region_parent.scope)
-            region_parent.nodes.add(id)
-            id += 1
+            nodes[id_node] = (region_parent.type, region_parent.depth, region_parent.scope)
+            region_parent.nodes.add(id_node)
+            id_node += 1
 
         if not isinstance(region_parent, rat_torch.GaussVector):
             for region_child in region_parent.inputs:
-                regions.put(region_child)
+                if region_child.id not in ids_region_visited:
+                    regions.put(region_child)
+                    ids_region_visited.add(region_child.id)
 
     return nodes
 
@@ -176,6 +181,34 @@ def getLabelsClass(dataset_config):
     else:
         return list(dataset_config["mappings"].keys())
 
+def plotPC(pc_nodes, pc_edges):
+    graph = networkx.DiGraph()
+
+    for node_id in pc_nodes.keys():
+        node_type = pc_nodes[node_id][0]
+        node_depth = pc_nodes[node_id][1]
+        node_name = str(node_id) + str(node_type)
+
+        graph.add_node(node_name, layer = node_depth)
+
+    for pc_edge in pc_edges:
+        node_id_1 = pc_edge[0]
+        node_type_1 = pc_nodes[node_id_1][0]
+        node_name_1 = str(node_id_1) + str(node_type_1)
+        node_id_2 = pc_edge[1]
+        node_type_2 = pc_nodes[node_id_2][0]
+        node_name_2 = str(node_id_2) + str(node_type_2)
+
+        graph.add_edge(node_name_1, node_name_2)
+
+    graph_position = networkx.multipartite_layout(graph, subset_key = "layer")
+
+    networkx.draw_networkx(graph, pos = graph_position, node_size = 1000, font_size = 7)
+    matplotlib.pyplot.title("Probabilistic Circuit")
+    matplotlib.pyplot.show()
+
+    return
+
 def plotRegionGraph(pc):
     graph = networkx.DiGraph()
     regions = queue.Queue()
@@ -189,8 +222,9 @@ def plotRegionGraph(pc):
 
         if not isinstance(region_parent, rat_torch.GaussVector):
             for region_child in region_parent.inputs:
-                region_child_name = str(region_child.id) + str(region_child.type)
                 regions.put(region_child)
+
+                region_child_name = str(region_child.id) + str(region_child.type)
                 graph.add_node(region_child_name, layer = region_child.depth)
                 graph.add_edge(region_parent_name, region_child_name)
 
@@ -271,11 +305,15 @@ def main():
     validateRegionGraph(pc)
     assignRegionIDs(pc)
     assignRegionDepths(pc)
+
+    if region_graph_plot:
+        plotRegionGraph(pc)
+
     pc_nodes = createPCNodes(pc)
     pc_edges = createPCEdges(pc)
 
-    if plot:
-        plotRegionGraph(pc)
+    if pc_plot:
+        plotPC(pc_nodes, pc_edges)
 
     return
 
