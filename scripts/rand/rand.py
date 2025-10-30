@@ -62,11 +62,11 @@ def assignRegionIDs(pc):
         id += 1
 
         if isinstance(region_parent, rat_torch.SumVector):
-            region_parent.type = "SUM"
+            region_parent.type = "S"
         elif isinstance(region_parent, rat_torch.ProductVector):
-            region_parent.type = "PRD"
+            region_parent.type = "P"
         elif isinstance(region_parent, rat_torch.GaussVector):
-            region_parent.type = "LEA"
+            region_parent.type = "L"
         else:
             region_parent.type = "???"
 
@@ -108,12 +108,12 @@ def plotRegionGraph(pc):
 
     while not regions.empty():
         region_parent = regions.get()
-        region_parent_name = str(region_parent.type) + " " + str(region_parent.id)
+        region_parent_name = str(region_parent.id) + str(region_parent.type)
         graph.add_node(region_parent_name, layer = region_parent.depth)
 
         if not isinstance(region_parent, rat_torch.GaussVector):
             for region_child in region_parent.inputs:
-                region_child_name = str(region_child.type) + " " + str(region_child.id)
+                region_child_name = str(region_child.id) + str(region_child.type)
                 regions.put(region_child)
                 graph.add_node(region_child_name, layer = region_child.depth)
                 graph.add_edge(region_parent_name, region_child_name)
