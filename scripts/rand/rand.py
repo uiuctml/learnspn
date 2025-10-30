@@ -157,7 +157,7 @@ def createPCNodes(pc):
                 print("[FATAL]: Duplicated PC node. Quit.")
                 exit(-1)
 
-            nodes[id_node] = (region_parent.type, region_parent.depth, region_parent.scope)
+            nodes[id_node] = (region_parent.type, region_parent.depth, region_parent.scope, region_parent.id)
             region_parent.nodes.add(id_node)
             id_node += 1
 
@@ -181,10 +181,11 @@ def expandPCLeafNodes(pc_nodes, pc_edges):
 
         node_depth = pc_nodes[node_id][1]
         node_scopes = pc_nodes[node_id][2]
-        pc_nodes[node_id] = ('P', node_depth, node_scopes)
+        node_region_id = pc_nodes[node_id][3]
+        pc_nodes[node_id] = ('P', node_depth, node_scopes, node_region_id)
 
         for node_scope in node_scopes:
-            pc_nodes_leaf[node_id_leaf] = ('L', node_depth + 1, node_scope)
+            pc_nodes_leaf[node_id_leaf] = ('L', node_depth + 1, node_scope, node_region_id)
             pc_edges.add((node_id, node_id_leaf))
             node_id_leaf += 1
 
