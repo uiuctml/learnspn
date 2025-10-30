@@ -251,7 +251,7 @@ def exportPC(pc_nodes, pc_edges, labels_attribute, labels_class):
 
             weights = (numpy.array(weights) / sum(weights)).tolist()
             weights = [str(weight) for weight in weights]
-            lines_nodes += str(node_id) + ",CATNODEPRD," + str(node_scope) + ',' + ','.join(weights) + '\n'
+            lines_nodes += str(node_id) + ",CATNODE," + str(node_scope) + ',' + ','.join(weights) + '\n'
             node_count_leaf += 1
         else:
             print("[FATAL]: Unknown node type. Quit.")
