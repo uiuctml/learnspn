@@ -65,11 +65,11 @@ def assignRegionIDs(pc):
         id += 1
 
         if isinstance(region_parent, rat_torch.SumVector):
-            region_parent.type = "S"
+            region_parent.type = 'S'
         elif isinstance(region_parent, rat_torch.ProductVector):
-            region_parent.type = "P"
+            region_parent.type = 'P'
         elif isinstance(region_parent, rat_torch.GaussVector):
-            region_parent.type = "L"
+            region_parent.type = 'L'
         else:
             print("[FATAL]: Unknown region type. Quit.")
             exit(-1)
@@ -79,6 +79,17 @@ def assignRegionIDs(pc):
                 regions.put(region_child)
 
     return
+
+def computeScopeSizes(labels_attribute, labels_class):
+    scope = 0
+    sizes_scope = {}
+
+    for (scope, attribute) in enumerate(labels_attribute.keys()):
+        sizes_scope[scope] = len(labels_attribute[attribute])
+
+    sizes_scope[scope + 1] = len(labels_class)
+
+    return sizes_scope
 
 def createPC(labels_attribute):
     count_variables = len(labels_attribute) + 1
@@ -153,6 +164,29 @@ def createPCNodes(pc):
                     ids_region_visited.add(region_child.id)
 
     return nodes
+
+def expandPCLeafNodes(pc_nodes, pc_edges):
+    node_id_leaf = max(pc_nodes.keys()) + 1
+    pc_nodes_leaf = {}
+
+    for node_id in pc_nodes.keys():
+        node_type = pc_nodes[node_id][0]
+
+        if node_type != 'L':
+            continue
+
+        node_depth = pc_nodes[node_id][1]
+        node_scopes = pc_nodes[node_id][2]
+        pc_nodes[node_id] = ('P', node_depth, node_scopes)
+
+        for node_scope in node_scopes:
+            pc_nodes_leaf[node_id_leaf] = ('L', node_depth + 1, node_scope)
+            pc_edges.add((node_id, node_id_leaf))
+            node_id_leaf += 1
+
+    pc_nodes.update(pc_nodes_leaf)
+
+    return
 
 def getLabelsAttribute(dataset_config):
     labels_attribute = {}
@@ -311,6 +345,7 @@ def main():
 
     pc_nodes = createPCNodes(pc)
     pc_edges = createPCEdges(pc)
+    expandPCLeafNodes(pc_nodes, pc_edges)
 
     if pc_plot:
         plotPC(pc_nodes, pc_edges)
