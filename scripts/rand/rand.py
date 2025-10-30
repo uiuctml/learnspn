@@ -299,12 +299,12 @@ def exportPC(pc_nodes, pc_edges, labels_attribute, labels_class):
         node_parent_id = pc_edge[0]
         node_parent_type = pc_nodes[node_parent_id][0]
 
-        lines_nodes += str(node_parent_id) + ',' + str(node_child_id)
+        lines_edges += str(node_parent_id) + ',' + str(node_child_id)
 
         if node_parent_type == 'S':
-            lines_nodes += ',' + str(weights_sum[pc_edge])
+            lines_edges += ',' + str(weights_sum[pc_edge])
 
-        lines_nodes += '\n'
+        lines_edges += '\n'
 
         if node_parent_type == 'P' and node_child_type == 'L':
             edge_count_prd_leaf += 1
