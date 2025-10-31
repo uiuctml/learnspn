@@ -24,15 +24,32 @@ dataset_prefix = "awa2"
 dir_outputs = "../../outputs/rand"
 file_name_pc_rand = dataset_prefix + ".spn.txt"
 file_path_dataset_config = os.path.join("../../../npc-dataset-utils/configs/npc-dataset-utils", dataset_prefix + ".json")
-pc_count_leaf_nodes_per_region = 100
 pc_count_root_nodes = 1
-pc_count_sum_nodes_per_region = 2
 pc_plot = False
 region_graph_plot = False
 region_graph_split_parts = 2
 region_graph_split_depth = 2
 region_graph_split_repetitions = 8
 seed = 42
+
+config_pc = {
+    "awa2": {
+        "leaf_nodes_per_region": 10,
+        "sum_nodes_per_region": 15
+    },
+    "celeba": {
+        "leaf_nodes_per_region": 10,
+        "sum_nodes_per_region": 15
+    },
+    "gtsrb": {
+        "leaf_nodes_per_region": 10,
+        "sum_nodes_per_region": 10
+    },
+    "mnist": {
+        "leaf_nodes_per_region": 20,
+        "sum_nodes_per_region": 15
+    }
+}
 
 def assignRegionDepths(pc):
     print("[INFO]: Assigning region depths...")
@@ -116,8 +133,8 @@ def createPC(labels_attribute):
 
     arguments = rat_torch.SpnArgs()
 
-    arguments.num_gauss = pc_count_leaf_nodes_per_region
-    arguments.num_sums = pc_count_sum_nodes_per_region
+    arguments.num_gauss = config_pc[dataset_prefix]["leaf_nodes_per_region"]
+    arguments.num_sums = config_pc[dataset_prefix]["sum_nodes_per_region"]
 
     return rat_torch.RatSpn(pc_count_root_nodes, region_graph = graph, args = arguments)
 
